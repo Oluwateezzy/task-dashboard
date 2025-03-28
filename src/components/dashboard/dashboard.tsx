@@ -7,6 +7,7 @@ import { SortType } from "../../types/enums/sort";
 import { getTasks } from "../../services/taskService";
 import TaskCard from "../ui/taskCard";
 import TaskFilter from "../ui/taskFilter";
+import TaskModal from "../ui/taskModal";
 
 export default function Dashboard() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -58,6 +59,20 @@ export default function Dashboard() {
         setFilteredTasks(result);
     }, [tasks, statusFilter, sortDirection, searchQuery])
 
+    const handleStatusChange = async (taskId: string, newStatus: TaskStatus) => {
+        console.log(taskId, newStatus)
+    }
+
+    const handleTaskClick = (task: Task) => {
+        setSelectedTask(task);
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+        setSelectedTask(null);
+    };
+
     return (
         <Container>
             <Header>
@@ -92,7 +107,7 @@ export default function Dashboard() {
                 ) : filteredTasks.length > 0 ? (
                     <GridContainer>
                             {filteredTasks.map((task) => (
-                                <TaskCard task={task} key={task.id} />
+                                <TaskCard task={task} key={task.id} onClick={() => handleTaskClick(task)} />
                         ))}
                     </GridContainer>
                 ) : (
@@ -102,6 +117,15 @@ export default function Dashboard() {
                     </NoTaskContainer>
                 )
             }
+
+            {modalOpen && selectedTask && (
+                <TaskModal
+                    task={selectedTask}
+                    isOpen={modalOpen}
+                    onClose={closeModal}
+                    onStatusChange={handleStatusChange(selectedTask.id, selectedTask.status)}
+                />
+            )}
         </Container>
     )
 }

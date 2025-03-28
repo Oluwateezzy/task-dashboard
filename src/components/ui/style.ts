@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { getStatusStyles } from "../../lib/getStatusType";
-import { Calendar, Filter } from "lucide-react";
+import { Calendar, Filter, FilterX } from "lucide-react";
 
 export const TaskCardStyle = styled.div`
   border-radius: 0.5rem;
@@ -94,17 +94,23 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.125rem; /* Equivalent to text-lg */
-  font-weight: 500; /* Equivalent to font-medium */
-  margin-bottom: 1rem; /* Equivalent to mb-4 */
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
   display: flex;
   align-items: center;
 `;
 
+export const IconX = styled(FilterX)`
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
+`;
+
 export const Icon = styled(Filter)`
-  width: 1.25rem; /* Equivalent to w-5 */
-  height: 1.25rem; /* Equivalent to h-5 */
-  margin-right: 0.5rem; /* Equivalent to mr-2 */
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-right: 0.5rem;
 `;
 
 export const GridContainer = styled.div`
@@ -113,7 +119,7 @@ export const GridContainer = styled.div`
   gap: 1rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr); /* md:grid-cols-3 */
+    grid-template-columns: repeat(3, 1fr);
   }
 `;
 
@@ -129,15 +135,16 @@ export const FlexRow = styled.div`
 `;
 
 export const Label = styled.label`
-  font-size: 0.875rem; /* Equivalent to text-sm */
-  font-weight: 500; /* Equivalent to font-medium */
-  line-height: 1.25rem; /* Equivalent to leading-none */
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
 
   }
 `;
 
 export const ButtonGroup = styled.div`
   display: flex;
+  justify-content: center;
   gap: 0.5rem;
 `;
 
@@ -204,22 +211,133 @@ export const SearchIcon = styled.svg`
   transform: translateY(-50%);
   height: 16px;
   width: 16px;
-  color: #6b7280; /* Text muted color */
+  color: #6b7280;
 `;
 
 export const Input = styled.input`
-  padding-left: 2rem; /* Space for the search icon */
+  padding-left: 2rem;
   padding: 0.5rem 1rem;
   width: 100%;
-  border: 1px solid #d1d5db; /* Border color */
+  border: 1px solid #d1d5db;
   border-radius: 0.375rem;
   font-size: 1rem;
-  color: #374151; /* Text color */
+  color: #374151;
   background-color: #fff;
 
   &:focus {
     outline: none;
-    border-color: #3b82f6; /* Focus border color */
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3); /* Focus shadow */
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+  }
+`;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(29, 21, 21, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ModalContent = styled.div`
+  background: white;
+  width: 500px;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+`;
+
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 10px;
+`;
+
+export const ModalTitle = styled.h2`
+  color: #4b5563;
+  font-size: 1.25rem;
+  font-weight: bold;
+`;
+
+export const CloseButton = styled.button`
+  background: none;
+  border: none;
+  color: #4b5563;
+  font-size: 1.5rem;
+  cursor: pointer;
+`;
+
+export const StatusBadge = styled.span<{ status: string }>`
+  display: inline-block;
+  background: ${(props) =>
+        props.status === "Completed"
+            ? "#D1FAE5"
+            : props.status === "Pending"
+                ? "#FDE68A"
+                : "#BFDBFE"};
+  color: ${(props) =>
+        props.status === "Completed"
+            ? "#065F46"
+            : props.status === "Pending"
+                ? "#92400E"
+                : "#1E40AF"};
+  padding: 10px;
+  border-radius: 2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+`;
+
+export const ModalStatusDueDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const DueDate = styled.p`
+  display: flex;
+  align-items: center;
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-top: 5px;
+`;
+
+export const Description = styled.p`
+  font-size: 0.875rem;
+  color: #4b5563;
+`;
+
+export const ModalLabel = styled.label`
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
+  margin-bottom: 5px;
+`;
+
+export const ModalSelect = styled.select`
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  cursor: pointer;
+`;
+
+export const CloseModalButton = styled.button`
+  margin-top: 15px;
+  background: #1f2937;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  width: 100px;
+  &:hover {
+    background: #374151;
   }
 `;

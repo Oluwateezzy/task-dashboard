@@ -1,5 +1,5 @@
 import { TaskFilterProps } from "../../types/taskFilterProps";
-import { Button, ButtonGroup, Container, FlexRow, GridContainer, Icon, Label, SearchIcon, SearchWrapper, Select, SelectContainer, SpaceY2, Title, Option, Input } from "./style";
+import { Button, ButtonGroup, Container, FlexRow, GridContainer, Icon, Label, SearchIcon, SearchWrapper, Select, SelectContainer, SpaceY2, Option, Input, IconX } from "./style";
 import { TaskStatus } from "../../types/enums/task";
 import { SortType } from "../../types/enums/sort";
 
@@ -13,10 +13,6 @@ export default function TaskFilter({
 }: TaskFilterProps) {
     return (
         <Container>
-            <Title>
-                <Icon />
-                Filter and Sort Tasks
-            </Title>
 
             <GridContainer>
                 <SpaceY2>
@@ -41,14 +37,14 @@ export default function TaskFilter({
                         <ButtonGroup>
                             <Button
                                 id="sort-direction"
-                                active={sortDirection === "asc"}
+                                active={sortDirection === SortType.ASC}
                                 onClick={() => setSortDirection(SortType.ASC)}
                             >
-                                <Icon>🔼</Icon>
+                                <IconX>🔼</IconX>
                                 Earliest First
                             </Button>
                             <Button
-                                active={sortDirection === "desc"}
+                                active={sortDirection === SortType.DESC}
                                 onClick={() => setSortDirection(SortType.DESC)}
                             >
                                 <Icon>🔽</Icon>

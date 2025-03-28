@@ -4,7 +4,7 @@ export const getStatusStyles = (status: string) => {
 
   if (status == TaskStatus.PENDING) {
     return `
-      background-color: #ffedd5;
+      background-color: #FDE68A;
       color: #9a3412;
       &:hover {
         background-color: #fdba74;
@@ -14,7 +14,7 @@ export const getStatusStyles = (status: string) => {
 
   if (status == TaskStatus.IN_PROGRESS) {
     return `
-      background-color: #dbeafe;
+      background-color: #BFDBFE;
       color: #1e40af;
       &:hover {
         background-color: #93c5fd;
@@ -24,7 +24,7 @@ export const getStatusStyles = (status: string) => {
 
   if (status == TaskStatus.COMPLETED) {
     return `
-      background-color: rgb(245, 202, 11);
+      background-color: #D1FAE5;
       color: #166534;
       &:hover {
         background-color: #86efac; 

@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import { getStatusStyles } from "../../lib/getStatusType";
 import { TaskCardProps } from "../../types/taskCardProps";
 import { Badge, TaskCardCalendarStyle, TaskCardDescriptionStyle, TaskCardDivStyle, TaskCardDueDate, TaskCardFooterDivStyle, TaskCardFooterStyle, TaskCardHeaderStyle, TaskCardStyle, TaskCardTitleStyle } from "./style";
 
@@ -19,7 +18,7 @@ export default function TaskCard({ task, onClick }: TaskCardProps) {
         }
     };
     return (
-        <TaskCardStyle>
+        <TaskCardStyle onClick={onClick}>
             <TaskCardHeaderStyle>
                 <TaskCardDivStyle>
                     <TaskCardTitleStyle>
