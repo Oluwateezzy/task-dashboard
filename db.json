@@ -1,0 +1,46 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Fix Bug #102",
+      "description": "Resolve login issue",
+      "status": "Pending",
+      "dueDate": "2025-04-01"
+    },
+    {
+      "id": 2,
+      "title": "Implement New Feature",
+      "description": "Add dark mode",
+      "status": "In Progress",
+      "dueDate": "2025-04-05"
+    },
+    {
+      "id": 3,
+      "title": "Code Review",
+      "description": "Review PR #24",
+      "status": "Completed",
+      "dueDate": "2025-03-30"
+    },
+    {
+      "id": 4,
+      "title": "Fix Bug #102",
+      "description": "Resolve login issue",
+      "status": "Pending",
+      "dueDate": "2025-04-01"
+    },
+    {
+      "id": 5,
+      "title": "Implement New Feature",
+      "description": "Add dark mode",
+      "status": "In Progress",
+      "dueDate": "2025-04-05"
+    },
+    {
+      "id": 6,
+      "title": "Code Review",
+      "description": "Review PR #24",
+      "status": "Completed",
+      "dueDate": "2025-03-30"
+    }
+  ]
+}
