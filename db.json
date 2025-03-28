@@ -1,46 +1,60 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "Fix Bug #102",
-      "description": "Resolve login issue",
+      "id": "task-1",
+      "title": "Complete website redesign",
+      "description": "Update the company website with new branding elements and improve mobile responsiveness.",
       "status": "Pending",
-      "dueDate": "2025-04-01"
+      "dueDate": "2023-11-25"
     },
     {
-      "id": 2,
-      "title": "Implement New Feature",
-      "description": "Add dark mode",
+      "id": "task-2",
+      "title": "Create Q4 marketing campaign",
+      "description": "Develop marketing materials and social media content for Q4 product launch.",
       "status": "In Progress",
-      "dueDate": "2025-04-05"
+      "dueDate": "2023-11-20"
     },
     {
-      "id": 3,
-      "title": "Code Review",
-      "description": "Review PR #24",
+      "id": "task-3",
+      "title": "Finalize 2024 budget",
+      "description": "Finalize department budget allocation for the upcoming fiscal year.",
       "status": "Completed",
-      "dueDate": "2025-03-30"
+      "dueDate": "2023-11-10"
     },
     {
-      "id": 4,
-      "title": "Fix Bug #102",
-      "description": "Resolve login issue",
+      "id": "task-4",
+      "title": "Customer feedback analysis",
+      "description": "Analyze recent customer feedback and create actionable insights report.",
+      "status": "In Progress",
+      "dueDate": "2023-11-28"
+    },
+    {
+      "id": "task-5",
+      "title": "Update product documentation",
+      "description": "Revise user guides to reflect recent feature changes and improvements.",
       "status": "Pending",
-      "dueDate": "2025-04-01"
+      "dueDate": "2023-12-05"
     },
     {
-      "id": 5,
-      "title": "Implement New Feature",
-      "description": "Add dark mode",
-      "status": "In Progress",
-      "dueDate": "2025-04-05"
+      "id": "task-6",
+      "title": "Vendor contract renewal",
+      "description": "Review and negotiate terms for upcoming vendor contract renewals.",
+      "status": "Pending",
+      "dueDate": "2023-12-10"
     },
     {
-      "id": 6,
-      "title": "Code Review",
-      "description": "Review PR #24",
+      "id": "task-7",
+      "title": "Team performance reviews",
+      "description": "Complete annual performance reviews for team members.",
       "status": "Completed",
-      "dueDate": "2025-03-30"
+      "dueDate": "2023-11-15"
+    },
+    {
+      "id": "task-8",
+      "title": "Software update deployment",
+      "description": "Coordinate with IT team to deploy latest software updates to all systems.",
+      "status": "In Progress",
+      "dueDate": "2023-11-22"
     }
   ]
 }
