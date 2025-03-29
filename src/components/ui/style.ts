@@ -1,6 +1,6 @@
 import styled from "styled-components";
+import { ArrowDown, ArrowUp, Calendar } from "lucide-react";
 import { getStatusStyles } from "../../utils/getStatusType";
-import { Calendar, Filter, FilterX } from "lucide-react";
 
 export const TaskCardStyle = styled.div`
   border-radius: 0.5rem;
@@ -101,13 +101,13 @@ export const Title = styled.h2`
   align-items: center;
 `;
 
-export const IconX = styled(FilterX)`
+export const IconX = styled(ArrowDown)`
   width: 1.25rem;
   height: 1.25rem;
   margin-right: 0.5rem;
 `;
 
-export const Icon = styled(Filter)`
+export const Icon = styled(ArrowUp)`
   width: 1.25rem;
   height: 1.25rem;
   margin-right: 0.5rem;
