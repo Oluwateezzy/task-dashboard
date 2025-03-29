@@ -313,6 +313,7 @@ export const Description = styled.p`
 
 export const ModalLabel = styled.label`
   display: block;
+  color: #4b5563;
   font-weight: 600;
   margin-top: 15px;
   margin-bottom: 5px;

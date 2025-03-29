@@ -2,7 +2,7 @@ import { AxiosError } from "axios";
 import axiosInstance from "../lib/axiosInstance";
 import { TaskStatus } from "../types/enums/task";
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+export const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export async function getTasks() {
   try {

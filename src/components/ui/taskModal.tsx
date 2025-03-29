@@ -23,7 +23,7 @@ const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) =>
                 <ModalLabel>Description</ModalLabel>
                 <Description>{task.description}</Description>
 
-                <ModalLabel>Update Status</ModalLabel>
+                <ModalLabel htmlFor="status-filter">Update Status</ModalLabel>
                 <Select
                     id="status-filter"
                     value={task.status}
