@@ -8,12 +8,14 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+
       <ToastContainer />
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Index />}></Route>
         </Routes>
       </BrowserRouter>
+
     </QueryClientProvider>
   )
 }

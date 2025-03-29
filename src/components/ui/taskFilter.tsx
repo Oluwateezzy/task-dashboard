@@ -1,8 +1,9 @@
-import { TaskFilterProps } from "../../types/taskFilterProps";
+import { TaskFilterProps } from "../../types/props/taskFilterProps";
 import { Button, ButtonGroup, Container, FlexRow, GridContainer, Icon, Label, SearchIcon, SearchWrapper, Select, SelectContainer, SpaceY2, Option, Input, IconX } from "./style";
 import { TaskStatus } from "../../types/enums/task";
 import { SortType } from "../../types/enums/sort";
 
+// TaskFilter component provides filtering and sorting options for tasks
 export default function TaskFilter({
     statusFilter,
     setStatusFilter,
@@ -13,8 +14,9 @@ export default function TaskFilter({
 }: TaskFilterProps) {
     return (
         <Container>
-
             <GridContainer>
+
+                {/* Status Filter Dropdown */}
                 <SpaceY2>
                     <SelectContainer>
                         <Label htmlFor="status-filter">Filter by Status</Label>
@@ -31,6 +33,7 @@ export default function TaskFilter({
                     </SelectContainer>
                 </SpaceY2>
 
+                {/* Sorting Buttons  */}
                 <SpaceY2>
                     <Label htmlFor="sort-direction">Sort by Due Date</Label>
                     <FlexRow>
@@ -54,6 +57,7 @@ export default function TaskFilter({
                     </FlexRow>
                 </SpaceY2>
 
+                {/* Search Input Field */}
                 <SpaceY2>
                     <Label htmlFor="search">Search Tasks</Label>
                     <SearchWrapper>

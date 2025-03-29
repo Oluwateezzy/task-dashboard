@@ -1,28 +1,32 @@
 import { TaskStatus } from "../../types/enums/task";
-import { TaskModalProps } from "../../types/taskModalProps";
+import { TaskModalProps } from "../../types/props/taskModalProps";
 import { CloseButton, CloseModalButton, Description, DueDate, ModalContent, ModalHeader, ModalLabel, ModalOverlay, ModalStatusDueDiv, ModalTitle, StatusBadge, Option, Select } from "./style";
 
-
+// TaskModal component for displaying task details and updating status
 const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) => {
     if (!isOpen) return null;
 
     return (
         <ModalOverlay>
             <ModalContent>
+
+                {/* Header section with task title and close button */}
                 <ModalHeader>
                     <ModalTitle>{task.title}</ModalTitle>
                     <CloseButton onClick={onClose}>&times;</CloseButton>
                 </ModalHeader>
 
+                {/* Status badge and due date section */}
                 <ModalStatusDueDiv>
                     <StatusBadge status={task.status}>{task.status}</StatusBadge>
                     <DueDate>📅 Due {task.dueDate}</DueDate>
                 </ModalStatusDueDiv>
 
-
+                {/* Task description */}
                 <ModalLabel>Description</ModalLabel>
                 <Description>{task.description}</Description>
 
+                {/* Dropdown to update task status */}
                 <ModalLabel htmlFor="status-filter">Update Status</ModalLabel>
                 <Select
                     id="status-filter"
@@ -34,6 +38,7 @@ const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) =>
                     <Option value={TaskStatus.COMPLETED}>Completed</Option>
                 </Select>
 
+                {/* Close button for the modal */}
                 <CloseModalButton onClick={onClose}>Close</CloseModalButton>
             </ModalContent>
         </ModalOverlay>

@@ -1,5 +1,5 @@
-import { TaskStatus } from "./enums/task";
-import { Task } from "./task";
+import { TaskStatus } from "../enums/task";
+import { Task } from "../task";
 
 export interface TaskModalProps {
     task: Task;

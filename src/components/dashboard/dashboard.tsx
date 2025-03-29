@@ -21,6 +21,10 @@ export default function Dashboard() {
     const [sortDirection, setSortDirection] = useState<SortType>(SortType.ASC);
     const [searchQuery, setSearchQuery] = useState("");
 
+    /**
+     * Fetch tasks from the API when the component mounts.
+     * Updates the `tasks` state and handles errors with a toast notification.
+     */
     useEffect(() => {
         const fetchTasks = async () => {
             try {
@@ -37,6 +41,12 @@ export default function Dashboard() {
         fetchTasks()
     }, [])
 
+    /**
+     * Filters and sorts tasks whenever `tasks`, `statusFilter`, `sortDirection`, or `searchQuery` change.
+     * - Filters tasks based on the selected status.
+     * - Searches for tasks using the query.
+     * - Sorts tasks based on their due date.
+     */
     useEffect(() => {
         let result = [...tasks]
 
@@ -61,6 +71,12 @@ export default function Dashboard() {
         setFilteredTasks(result);
     }, [tasks, statusFilter, sortDirection, searchQuery])
 
+    /**
+     * Handles status change for a task.
+     * - Calls API to update the task status.
+     * - Updates the task in the local state.
+     * - Displays success or error notification.
+     */
     const handleStatusChange = async (taskId: string, newStatus: TaskStatus) => {
         try {
             await updateTask(taskId, { status: newStatus });
@@ -81,11 +97,17 @@ export default function Dashboard() {
         }
     }
 
+    /**
+     * Opens the task modal and sets the selected task for detailed view.
+     */
     const handleTaskClick = (task: Task) => {
         setSelectedTask(task);
         setModalOpen(true);
     };
 
+    /**
+     * Closes the task modal and resets the selected task.
+     */
     const closeModal = () => {
         setModalOpen(false);
         setSelectedTask(null);

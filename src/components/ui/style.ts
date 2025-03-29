@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getStatusStyles } from "../../lib/getStatusType";
+import { getStatusStyles } from "../../utils/getStatusType";
 import { Calendar, Filter, FilterX } from "lucide-react";
 
 export const TaskCardStyle = styled.div`

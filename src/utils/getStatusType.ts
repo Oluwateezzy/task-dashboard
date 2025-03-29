@@ -1,7 +1,9 @@
 import { TaskStatus } from "../types/enums/task";
 
+// Function to get CSS styles based on task status
 export const getStatusStyles = (status: string) => {
 
+  // Styling for Pending tasks
   if (status == TaskStatus.PENDING) {
     return `
       background-color: #FDE68A;
@@ -12,6 +14,7 @@ export const getStatusStyles = (status: string) => {
     `;
   }
 
+  // Styling for In Progress tasks
   if (status == TaskStatus.IN_PROGRESS) {
     return `
       background-color: #BFDBFE;
@@ -22,6 +25,7 @@ export const getStatusStyles = (status: string) => {
     `;
   }
 
+  // Styling for Completed tasks
   if (status == TaskStatus.COMPLETED) {
     return `
       background-color: #D1FAE5;
@@ -32,7 +36,7 @@ export const getStatusStyles = (status: string) => {
     `;
   }
 
-  // Default case
+  // Default styling for unknown statuses
   return `
     background-color: rgb(23, 82, 199);
     color: #374151;

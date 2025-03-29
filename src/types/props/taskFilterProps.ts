@@ -1,5 +1,5 @@
-import { SortType } from "./enums/sort";
-import { TaskStatus } from "./enums/task";
+import { SortType } from "../enums/sort";
+import { TaskStatus } from "../enums/task";
 
 export interface TaskFilterProps {
   statusFilter: TaskStatus
