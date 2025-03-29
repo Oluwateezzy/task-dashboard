@@ -8,6 +8,7 @@ import { getTasks, updateTask } from "../../services/taskService";
 import TaskCard from "../ui/taskCard";
 import TaskFilter from "../ui/taskFilter";
 import TaskModal from "../ui/taskModal";
+import { toast } from "react-toastify";
 
 export default function Dashboard() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -27,6 +28,7 @@ export default function Dashboard() {
                 setTasks(data)
             } catch (error) {
                 console.log(error)
+                toast("Failed to load tasks");
             } finally {
                 setLoading(false)
             }
@@ -68,13 +70,14 @@ export default function Dashboard() {
                 )
             );
 
-            // Also update the selected task if it's the one being modified
             if (selectedTask && selectedTask.id === taskId) {
                 setSelectedTask({ ...selectedTask, status: newStatus });
             }
+            toast("Task Status Updated")
         } catch (error) {
             console.error("Error updating task:", error);
-            throw error;
+            toast(`Error updating task: ${error}`)
+            throw error
         }
     }
 

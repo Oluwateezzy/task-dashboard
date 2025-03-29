@@ -21,7 +21,6 @@ export async function updateTask(taskId: string, data: {status: TaskStatus}) {
   try {
     const response = await axiosInstance.patch(`/tasks/${taskId}`, data);
     await delay(500)
-    console.log(response)
     return response.data;
 
   } catch (error: unknown) {
