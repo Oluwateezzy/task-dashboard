@@ -1,6 +1,6 @@
 import { TaskStatus } from "../../types/enums/task";
 import { TaskModalProps } from "../../types/taskModalProps";
-import { CloseButton, CloseModalButton, Description, DueDate, ModalContent, ModalHeader, ModalLabel, ModalOverlay, ModalSelect, ModalStatusDueDiv, ModalTitle, StatusBadge } from "./style";
+import { CloseButton, CloseModalButton, Description, DueDate, ModalContent, ModalHeader, ModalLabel, ModalOverlay, ModalStatusDueDiv, ModalTitle, StatusBadge, Option, Select } from "./style";
 
 
 const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) => {
@@ -24,14 +24,15 @@ const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) =>
                 <Description>{task.description}</Description>
 
                 <ModalLabel>Update Status</ModalLabel>
-                <ModalSelect
+                <Select
+                    id="status-filter"
                     value={task.status}
                     onChange={(e) => onStatusChange(task.id, e.target.value as TaskStatus)}
                 >
-                    <option value={TaskStatus.PENDING}>Pending</option>
-                    <option value={TaskStatus.IN_PROGRESS}>In Progress</option>
-                    <option value={TaskStatus.COMPLETED}>Completed</option>
-                </ModalSelect>
+                    <Option value={TaskStatus.PENDING}>Pending</Option>
+                    <Option value={TaskStatus.IN_PROGRESS}>In Progress</Option>
+                    <Option value={TaskStatus.COMPLETED}>Completed</Option>
+                </Select>
 
                 <CloseModalButton onClick={onClose}>Close</CloseModalButton>
             </ModalContent>

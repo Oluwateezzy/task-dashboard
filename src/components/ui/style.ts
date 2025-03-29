@@ -135,6 +135,7 @@ export const FlexRow = styled.div`
 `;
 
 export const Label = styled.label`
+  color: #374151;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.25rem;

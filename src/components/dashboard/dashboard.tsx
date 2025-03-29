@@ -4,7 +4,7 @@ import { Grid } from "react-loader-spinner";
 import { Task } from "../../types/task";
 import { TaskStatus } from "../../types/enums/task";
 import { SortType } from "../../types/enums/sort";
-import { getTasks } from "../../services/taskService";
+import { getTasks, updateTask } from "../../services/taskService";
 import TaskCard from "../ui/taskCard";
 import TaskFilter from "../ui/taskFilter";
 import TaskModal from "../ui/taskModal";
@@ -60,7 +60,22 @@ export default function Dashboard() {
     }, [tasks, statusFilter, sortDirection, searchQuery])
 
     const handleStatusChange = async (taskId: string, newStatus: TaskStatus) => {
-        console.log(taskId, newStatus)
+        try {
+            await updateTask(taskId, { status: newStatus });
+            setTasks(prevTasks =>
+                prevTasks.map(task =>
+                    task.id === taskId ? { ...task, status: newStatus } : task
+                )
+            );
+
+            // Also update the selected task if it's the one being modified
+            if (selectedTask && selectedTask.id === taskId) {
+                setSelectedTask({ ...selectedTask, status: newStatus });
+            }
+        } catch (error) {
+            console.error("Error updating task:", error);
+            throw error;
+        }
     }
 
     const handleTaskClick = (task: Task) => {
@@ -123,7 +138,7 @@ export default function Dashboard() {
                     task={selectedTask}
                     isOpen={modalOpen}
                     onClose={closeModal}
-                    onStatusChange={handleStatusChange(selectedTask.id, selectedTask.status)}
+                    onStatusChange={handleStatusChange}
                 />
             )}
         </Container>
