@@ -60,7 +60,7 @@ npm run dev
 - Update Task: Change task status using the dropdown.
 
 ## Design Decisions
-- Component-Based Architecture
+- Component-Based Architecture:
   The application follows a modular design with reusable components:
   - SearchBar: Handles searching tasks by title/description.
   - TaskTable: Displays task list and handles loading states.
