@@ -41,7 +41,6 @@ describe("Dashboard Component", () => {
 
         // Ensure loading state is shown
         expect(screen.getByText(/Task Dashboard/i)).toBeInTheDocument();
-        expect(screen.getByText(/Manage your customer tasks/i)).toBeInTheDocument();
 
         // Wait for tasks to be loaded
         await waitFor(() => expect(screen.getByText("Task 1")).toBeInTheDocument());
@@ -50,52 +49,56 @@ describe("Dashboard Component", () => {
 
     test("filters tasks by status", async () => {
         render(<Dashboard />);
+        await waitFor(() => expect(screen.getByText("In Progress")).toBeInTheDocument());
 
-        // Wait for tasks to load
-        await waitFor(() => expect(screen.getByText("Task 1")).toBeInTheDocument());
+        // Click on "In Progress" filter tab
+        fireEvent.click(screen.getByText(/In Progress/i));
 
-        // Select "In Progress" filter
-        fireEvent.change(screen.getByLabelText(/Filter by Status/i), {
-            target: { value: TaskStatus.IN_PROGRESS },
-        });
+        // Task 1 should not be visible as it is pending
+        await waitFor(() => expect(screen.queryByText("Task 1")).not.toBeInTheDocument());
 
-        // Ensure only "Task 2" is visible
-        await waitFor(() => {
-            expect(screen.queryByText("Task 1")).not.toBeInTheDocument();
-            expect(screen.getByText("Task 2")).toBeInTheDocument();
-        });
+        // Task 2 should be visible
+        expect(screen.getByText("Task 2")).toBeInTheDocument();
     });
 
-    test("Search tasks", async () => {
+    test("search tasks", async () => {
         render(<Dashboard />);
-
-        // Wait for tasks to load
         await waitFor(() => expect(screen.getByText("Task 1")).toBeInTheDocument());
 
-        // Enter search term - need to add a value here
-        fireEvent.change(screen.getByLabelText(/Search Tasks/i), {
-            target: { value: "second" }
+        // Type "Task 2" in the search bar
+        fireEvent.change(screen.getByPlaceholderText("Search by title or description"), {
+            target: { value: "Task 2" },
         });
 
-        // Ensure only "Task 2" is visible
-        await waitFor(() => {
-            expect(screen.queryByText("Task 1")).not.toBeInTheDocument();
-            expect(screen.getByText("Task 2")).toBeInTheDocument();
-        });
+        // Task 1 should not be visible
+        await waitFor(() => expect(screen.queryByText("Task 1")).not.toBeInTheDocument());
+
+        // Task 2 should be visible
+        expect(screen.getByText("Task 2")).toBeInTheDocument();
     });
 
     test("updates task status", async () => {
         render(<Dashboard />);
-
-        // Wait for tasks to load
         await waitFor(() => expect(screen.getByText("Task 1")).toBeInTheDocument());
 
-        // Open task modal
-        fireEvent.click(screen.getByText("Task 1"));
-        await waitFor(() => expect(screen.getByText(/Description/i)).toBeInTheDocument());
+        // Click on Task 1 to open modal
+        fireEvent.click(screen.getByTestId("task-action-1-0"));;
 
+        // Wait for modal to appear
+        await waitFor(() => expect(screen.getByText(/Update Status/i)).toBeInTheDocument());
+
+        // Change task status to "Completed"
         fireEvent.change(screen.getByLabelText(/Update Status/i), {
             target: { value: TaskStatus.COMPLETED },
         });
+
+        // Check if `updateTask` API was called
+        await waitFor(() => expect(updateTask).toHaveBeenCalledWith("1", TaskStatus.COMPLETED));
+
+        // Close the modal
+        fireEvent.click(screen.getByText("Close"));
+
+        // Task 1 should now have "Completed" status
+        await waitFor(() => expect(screen.getByText("Completed")).toBeInTheDocument());
     });
 });

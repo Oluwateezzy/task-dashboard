@@ -3,8 +3,8 @@ import { TaskCardProps } from "../../types/props/taskCardProps";
 import { Badge, TableCell, TableRow, TaskAction, TaskDueDate } from "./style";
 
 
-// TaskCard component displays individual task details
-export default function Task({ task, onClick }: TaskCardProps) {
+// Task component displays individual task details
+export default function Task({ task, onClick, index }: TaskCardProps) {
 
     /**
      * Determines if the task is overdue
@@ -36,19 +36,27 @@ export default function Task({ task, onClick }: TaskCardProps) {
 
     return (
         <TableRow>
-            <TableCell>{task.title}</TableCell>
+
+            <TableCell>
+                {task.title}
+            </TableCell>
+
             <TableCell>
                 <Badge $status={task.status}>
                     {task.status}
                 </Badge>
             </TableCell>
+
             <TableCell>
                 <TaskDueDate isOverdue={isPastDue()}>
                     {formatDate(task.dueDate)}
-                </TaskDueDate></TableCell>
-            <TableCell>
-                <TaskAction onClick={onClick}></TaskAction>
+                </TaskDueDate>
             </TableCell>
+
+            <TableCell>
+                <TaskAction id={`${task.id}_${index}`} data-testid={`task-action-${task.id}-${index}`} onClick={onClick} />
+            </TableCell>
+
         </TableRow>
     )
 }

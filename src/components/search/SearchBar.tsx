@@ -1,9 +1,11 @@
 import { SearchQueryProps } from "../../types/props/searchQueryProps";
 import { Input, SearchIcon, SearchWrapper } from "./style";
 
-const SearchBar = ({ searchQuery, setSearchQuery }: SearchQueryProps) => {
+// SearchBar component for filtering tasks by title or description
+export default function SearchBar({ searchQuery, setSearchQuery }: SearchQueryProps) {
     return (
         <SearchWrapper>
+            
             <SearchIcon />
             <Input
                 id="search"
@@ -12,8 +14,8 @@ const SearchBar = ({ searchQuery, setSearchQuery }: SearchQueryProps) => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="pl-8"
             />
+
         </SearchWrapper>
     );
 };
 
-export default SearchBar;
