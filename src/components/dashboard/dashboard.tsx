@@ -133,11 +133,14 @@ export default function Dashboard() {
 
     return (
         <Tabs>
+
+            {/* Page Header displaying the title and SearchBar for filtering tasks */}
             <PageHeader>
                 <PageTitle>Task Dashboard</PageTitle>
                 <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
             </PageHeader>
 
+            {/* TaskFilter component for filtering tasks by status and sorting them */}
             <TaskFilter
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
@@ -145,6 +148,7 @@ export default function Dashboard() {
                 setSortDirection={setSortDirection}
             />
 
+            {/* Main Content - Displaying the task table and pagination */}
             <TabsContent>
                 <Card>
                     <CardContent>
@@ -161,6 +165,8 @@ export default function Dashboard() {
                     </CardContent>
                 </Card>
             </TabsContent>
+
+            {/* Conditional rendering of TaskModal when modal is open and a task is selected */}
             {
                 modalOpen && selectedTask && (
                     <TaskModal
@@ -171,6 +177,7 @@ export default function Dashboard() {
                     />
                 )
             }
+
         </Tabs>
     )
 }

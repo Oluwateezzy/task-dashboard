@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUp } from "lucide-react";
+import { ArrowDown, Filter } from "lucide-react";
 import { styled } from "styled-components";
 
 const TabContainerDiv = styled.div`
@@ -79,7 +79,7 @@ const IconX = styled(ArrowDown)`
   margin-right: 0.5rem;
 `;
 
-const Icon = styled(ArrowUp)`
+const Icon = styled(Filter)`
   width: 1.25rem;
   height: 1.25rem;
   margin-right: 0.5rem;
