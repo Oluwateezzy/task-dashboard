@@ -1,4 +1,4 @@
-import { SearchQueryProps } from "../../types/props/searchQuery";
+import { SearchQueryProps } from "../../types/props/searchQueryProps";
 import { Input, SearchIcon, SearchWrapper } from "./style";
 
 const SearchBar = ({ searchQuery, setSearchQuery }: SearchQueryProps) => {

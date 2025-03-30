@@ -1,11 +1,13 @@
+import { PaginationProps } from "../../types/props/paginationProps";
 import { PaginationButton, PaginationContainer } from "./style";
 
-export default function Pagination({ currentPage, setCurrentPage }) {
-    const totalPages = 5;
+export default function Pagination({ totalPages, currentPage, setCurrentPage }: PaginationProps) {
+    const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
     return (
         <PaginationContainer>
-            <PaginationButton onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
+            <PaginationButton onClick={prevPage} disabled={currentPage === 1}>
                 Previous
             </PaginationButton>
 
@@ -19,7 +21,7 @@ export default function Pagination({ currentPage, setCurrentPage }) {
                 </PaginationButton>
             ))}
 
-            <PaginationButton onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))} disabled={currentPage >= totalPages}>
+            <PaginationButton onClick={nextPage} disabled={currentPage >= totalPages}>
                 Next
             </PaginationButton>
         </PaginationContainer>

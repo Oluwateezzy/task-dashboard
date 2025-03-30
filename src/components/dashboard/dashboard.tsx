@@ -7,8 +7,9 @@ import TaskModal from "../taskModal/taskModa";
 import { toast } from "react-toastify";
 import { Card, CardContent, PageHeader, PageTitle, Tabs, TabsContent } from "./style";
 import SearchBar from "../search/SearchBar";
-import TaskFilter from "../filter/TaskFilter";
-import TaskTable from "../table/TaskTable";
+import Pagination from "../pagination/pagination";
+import TaskFilter from "../filter/taskFilter";
+import TaskTable from "../table/taskTable";
 
 const TASKS_PER_PAGE = 5;
 
@@ -86,8 +87,7 @@ export default function Dashboard() {
 
     const totalPages = Math.ceil(filteredTasks.length / TASKS_PER_PAGE);
 
-    const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-    const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
+
 
     /**
      * Handles status change for a task.
@@ -153,10 +153,11 @@ export default function Dashboard() {
                             onTaskClick={handleTaskClick}
                             loading={loading}
                         />
-                        {/* <Pagination
+                        <Pagination
+                            totalPages={totalPages}
                             currentPage={currentPage}
                             setCurrentPage={setCurrentPage}
-                        /> */}
+                        />
                     </CardContent>
                 </Card>
             </TabsContent>
