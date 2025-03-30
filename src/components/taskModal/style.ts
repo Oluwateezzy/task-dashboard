@@ -227,7 +227,13 @@ export const ModalStatusDueDiv = styled.div`
   justify-content: space-between;
 `;
 
-export const DueDate = styled.p`
+export const overdueStyle = `
+  color: #ef4444;
+  font-weight: 500;
+`;
+
+export const DueDate = styled.p<{ isOverdue: boolean }>`
+  ${({ isOverdue }) => isOverdue && overdueStyle}
   display: flex;
   align-items: center;
   color: #6b7280;

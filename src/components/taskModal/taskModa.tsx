@@ -1,9 +1,10 @@
 import { TaskStatus } from "../../types/enums/task";
 import { TaskModalProps } from "../../types/props/taskModalProps";
+import { isPastDue } from "../../utils/isPastDue";
 import { CloseButton, CloseModalButton, Description, DueDate, ModalContent, ModalHeader, ModalLabel, ModalOverlay, ModalStatusDueDiv, ModalTitle, StatusBadge, Option, Select } from "./style";
 
 // TaskModal component for displaying task details and updating status
-const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) => {
+export default function TaskModal({ task, isOpen, onClose, onStatusChange }: TaskModalProps) {
     if (!isOpen) return null;
 
     return (
@@ -19,7 +20,7 @@ const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) =>
                 {/* Status badge and due date section */}
                 <ModalStatusDueDiv>
                     <StatusBadge status={task.status}>{task.status}</StatusBadge>
-                    <DueDate>📅 Due {task.dueDate}</DueDate>
+                    <DueDate isOverdue={isPastDue(task.dueDate, task.status)}>📅 Due Date: {task.dueDate}</DueDate>
                 </ModalStatusDueDiv>
 
                 {/* Task description */}
@@ -44,5 +45,3 @@ const TaskModal = ({ task, isOpen, onClose, onStatusChange }: TaskModalProps) =>
         </ModalOverlay>
     );
 };
-
-export default TaskModal;
