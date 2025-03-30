@@ -5,14 +5,14 @@ This project demonstrates state management, API integration, filtering, sorting,
 ---
 
 ## Features
-- ✅ Fetch tasks from a mock API using `json-server`
-- ✅ Display tasks in a dashboard
-- ✅ Filter tasks by **status** (Pending, In Progress, Completed)
-- ✅ Sort tasks by **due date**
-- ✅ View task details in a modal
-- ✅ Update task status (state updates and mock API persistence)
-- ✅ Responsive design for desktop and mobile
-- ✅ Includes unit tests using **Jest** and **React Testing Library**
+- Fetch tasks from a mock API using `json-server`
+- Display tasks in a dashboard
+- Filter tasks by **status** (Pending, In Progress, Completed)
+- Sort tasks by **due date**
+- View task details in a modal
+- Update task status (state updates and mock API persistence)
+- Responsive design for desktop and mobile
+- Includes unit tests using **Jest** and **React Testing Library**
 
 ---
 
@@ -43,8 +43,8 @@ npm install
 ```sh
 npx json-server --watch db.json --port 5000
 ```
-- ✅ The API runs at http://localhost:5000
-- ✅ Available Endpoints:
+- The API runs at http://localhost:5000
+- Available Endpoints:
      - GET /tasks → Fetch all tasks
      - PATCH /tasks/:id → Update a task
 
