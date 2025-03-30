@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { ArrowDown, ArrowUp, Calendar } from "lucide-react";
-import { getStatusStyles } from "../../utils/getStatusType";
+import { Calendar } from "lucide-react";
 
 export const TaskCardStyle = styled.div`
   border-radius: 0.5rem;
@@ -38,14 +37,6 @@ export const TaskCardTitleStyle = styled.div`
   letter-spacing: -0.015em;
 `;
 
-export const Badge = styled.div<{ $status: string }>`
-  font-size: 0.7rem;
-  padding: 0.3rem;
-  border-radius: 1rem;
-  font-weight: 500;
-  ${({ $status }) => getStatusStyles($status)}
-`;
-
 export const TaskCardDescriptionStyle = styled.div`
   padding: 1.3rem;
   display: -webkit-box;
@@ -77,13 +68,6 @@ export const TaskCardCalendarStyle = styled(Calendar)`
   margin-right: 0.25rem;
 `;
 
-export const TaskCardDueDate = styled.span<{ isOverdue: boolean }>`
-  ${({ isOverdue }) => isOverdue && `
-    color: #ef4444;
-    font-weight: 500;
-  `}
-`;
-
 export const Container = styled.div`
   background-color: white;
   border-radius: 0.5rem;
@@ -99,18 +83,6 @@ export const Title = styled.h2`
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
-`;
-
-export const IconX = styled(ArrowDown)`
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 0.5rem;
-`;
-
-export const Icon = styled(ArrowUp)`
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 0.5rem;
 `;
 
 export const GridContainer = styled.div`
@@ -143,32 +115,6 @@ export const Label = styled.label`
   }
 `;
 
-export const ButtonGroup = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-`;
-
-export const Button = styled.button<{ active?: boolean }>`
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border-radius: 0.375rem;
-  border: 1px solid ${({ active }) => (active ? "#3b82f6" : "#e5e7eb")};
-  background-color: ${({ active }) => (active ? "#3b82f6" : "transparent")};
-  color: ${({ active }) => (active ? "#fff" : "#374151")};
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-
-  &:hover {
-    background-color: ${({ active }) => (active ? "#2563eb" : "#f3f4f6")};
-  }
-`;
-
 export const SelectContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -196,23 +142,6 @@ export const Option = styled.option`
   padding: 0.5rem 1rem;
   font-size: 1rem;
   color: #374151;
-`;
-
-export const SearchWrapper = styled.div`
-  position: relative;
-  display: flex;
-  align-items: center;
-  width: 100%;
-`;
-
-export const SearchIcon = styled.svg`
-  position: absolute;
-  left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 16px;
-  width: 16px;
-  color: #6b7280;
 `;
 
 export const Input = styled.input`

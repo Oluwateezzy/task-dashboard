@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
-import { Container, GridContainer, Header, NoTaskContainer, NoTaskText, NoTaskTitle, Subtitle, Title } from "./style"
-import { Grid } from "react-loader-spinner";
 import { Task } from "../../types/task";
 import { TaskStatus } from "../../types/enums/task";
 import { SortType } from "../../types/enums/sort";
 import { getTasks, updateTask } from "../../services/taskService";
-import TaskCard from "../ui/taskCard";
-import TaskFilter from "../ui/taskFilter";
-import TaskModal from "../ui/taskModal";
+import TaskModal from "../taskModal/taskModa";
 import { toast } from "react-toastify";
+import { Card, CardContent, PageHeader, PageTitle, Tabs, TabsContent } from "./style";
+import SearchBar from "../search/SearchBar";
+import TaskFilter from "../filter/TaskFilter";
+import TaskTable from "../table/TaskTable";
+
+const TASKS_PER_PAGE = 5;
 
 export default function Dashboard() {
     const [tasks, setTasks] = useState<Task[]>([]);
@@ -16,6 +18,8 @@ export default function Dashboard() {
     const [selectedTask, setSelectedTask] = useState<Task | null>(null);
     const [loading, setLoading] = useState(true);
     const [modalOpen, setModalOpen] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [paginatedTasks, setPaginatedTasks] = useState<Task[]>([]);
 
     const [statusFilter, setStatusFilter] = useState<TaskStatus>(TaskStatus.ALL);
     const [sortDirection, setSortDirection] = useState<SortType>(SortType.ASC);
@@ -69,7 +73,21 @@ export default function Dashboard() {
         })
 
         setFilteredTasks(result);
+        setCurrentPage(1);
     }, [tasks, statusFilter, sortDirection, searchQuery])
+
+    useEffect(() => {
+        // Calculate start and end index for pagination
+        const startIdx = (currentPage - 1) * TASKS_PER_PAGE;
+        const endIdx = startIdx + TASKS_PER_PAGE;
+
+        setPaginatedTasks(filteredTasks.slice(startIdx, endIdx));
+    }, [filteredTasks, currentPage]);
+
+    const totalPages = Math.ceil(filteredTasks.length / TASKS_PER_PAGE);
+
+    const nextPage = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    const prevPage = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
     /**
      * Handles status change for a task.
@@ -114,58 +132,44 @@ export default function Dashboard() {
     };
 
     return (
-        <Container>
-            <Header>
-                <div>
-                    <Title>Task Dashboard</Title>
-                    <Subtitle> Manage your customer tasks </Subtitle>
-                </div>
-            </Header>
+        <Tabs>
+            <PageHeader>
+                <PageTitle>Task Dashboard</PageTitle>
+                <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+            </PageHeader>
 
             <TaskFilter
                 statusFilter={statusFilter}
                 setStatusFilter={setStatusFilter}
                 sortDirection={sortDirection}
                 setSortDirection={setSortDirection}
-                searchQuery={searchQuery}
-                setSearchQuery={setSearchQuery}
             />
 
-            {
-                loading ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <Grid
-                            height="300"
-                            width="100%"
-                            color="#4fa94d"
-                            ariaLabel="bars-loading"
-                            wrapperStyle={{}}
-                            wrapperClass=""
-                            visible={true}
+            <TabsContent>
+                <Card>
+                    <CardContent>
+                        <TaskTable
+                            tasks={paginatedTasks}
+                            onTaskClick={handleTaskClick}
+                            loading={loading}
                         />
-                    </div>
-                ) : filteredTasks.length > 0 ? (
-                    <GridContainer>
-                            {filteredTasks.map((task) => (
-                                <TaskCard task={task} key={task.id} onClick={() => handleTaskClick(task)} />
-                        ))}
-                    </GridContainer>
-                ) : (
-                    <NoTaskContainer>
-                        <NoTaskTitle>No tasks found</NoTaskTitle>
-                        <NoTaskText>Try adjusting your filters or search criteria</NoTaskText>
-                    </NoTaskContainer>
+                        {/* <Pagination
+                            currentPage={currentPage}
+                            setCurrentPage={setCurrentPage}
+                        /> */}
+                    </CardContent>
+                </Card>
+            </TabsContent>
+            {
+                modalOpen && selectedTask && (
+                    <TaskModal
+                        task={selectedTask}
+                        isOpen={modalOpen}
+                        onClose={closeModal}
+                        onStatusChange={handleStatusChange}
+                    />
                 )
             }
-
-            {modalOpen && selectedTask && (
-                <TaskModal
-                    task={selectedTask}
-                    isOpen={modalOpen}
-                    onClose={closeModal}
-                    onStatusChange={handleStatusChange}
-                />
-            )}
-        </Container>
+        </Tabs>
     )
 }
