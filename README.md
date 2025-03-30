@@ -23,7 +23,7 @@ This project demonstrates state management, API integration, filtering, sorting,
 - **Axios** (for API calls)
 - **Styled Components** (for styling)
 - **json-server** (for mocking API)
-- **Jest & React Testing Library** (for unit tests)
+- **Vitest & React Testing Library** (for unit tests)
 
 ---
 
@@ -50,7 +50,7 @@ npx json-server --watch db.json --port 5000
 
 ### 4️⃣ Start the React App
 ```sh
-npm start
+npm run dev
 ```
 
 ## How to Use
@@ -59,20 +59,30 @@ npm start
 - Task Details: Click a task to view more details.
 - Update Task: Change task status using the dropdown.
 
-## Running Tests
-### To run unit tests:
-```sh
-npm test
-```
-
 ## Design Decisions
+- Component-Based Architecture
+  The application follows a modular design with reusable components:
+  - SearchBar: Handles searching tasks by title/description.
+  - TaskTable: Displays task list and handles loading states.
+  - TaskModal: Provides a modal interface for viewing and updating tasks.
+
+- State Management
+  State is managed using React hooks (useState, useEffect). The task data is fetched and stored in local state.
+    
 - API Handling
   - Axios is used with a custom instance (lib/axiosInstance.ts) for better maintainability.
   - Mock API requests are simulated using json-server.
 
-- State Management
-  - useState and useEffect are used for state handling.
-  - API data is stored locally for updates without reloading.
-
 - Styling Approach
   - Styled Components is used for modular CSS.
+
+## Design Decisions
+- Mock API vs. Real Backend: A mock service is used instead of a backend for simplicity. In a production environment, an actual API would replace this.
+- Minimal State Management Library: Instead of Redux or Zustand, React's built-in state is used to avoid unnecessary complexity.
+
+## Running Tests
+### Unit tests are written using Vitest and React Testing Library.
+### To run unit tests:
+```sh
+npm test
+```
