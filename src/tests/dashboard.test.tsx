@@ -77,6 +77,17 @@ describe("Dashboard Component", () => {
         expect(screen.getByText("Task 2")).toBeInTheDocument();
     });
 
+    test("open Task details Modal", async () => {
+        render(<Dashboard />);
+        await waitFor(() => expect(screen.getByText("Task 1")).toBeInTheDocument());
+
+        // Click on Task 1 to open modal
+        fireEvent.click(screen.getByTestId("task-action-1-0"));
+
+        // Wait for modal to appear
+        await waitFor(() => expect(screen.getByText(/Update Status/i)).toBeInTheDocument());
+    })
+
     test("updates task status", async () => {
         render(<Dashboard />);
         await waitFor(() => expect(screen.getByText("Task 1")).toBeInTheDocument());
